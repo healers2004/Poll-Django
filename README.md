@@ -1,5 +1,6 @@
 This file is to explain what this project does and how to download and use it so that it works as intended.
-The project is a website with 2 applications - Polls and Blog
+The project is a website with 2 applications - Polls and Blog.
+
 Polls is a simple polling application that can be used to cast your votes from the available options for a particular question.
 New polls can be added by the admin that can then be viewed by the user.
 
