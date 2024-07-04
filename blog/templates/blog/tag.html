@@ -1,0 +1,41 @@
+{% extends "base_blog.html" %}
+
+{% load static %}
+
+{% block title %}
+    Posts tagged "{{ tag }}"
+{% endblock %}
+
+{% block content %}
+<div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-7">
+            {% if posts %}
+                {% for post in posts %}
+                    <div class="post-preview">
+                        <a href="{% url 'blog_detail' post.pk %}">
+                            <h2 class="post-title">{{ post.title }}</h2>
+                            <h3 class="post-subtitle">{{ post.body|truncatewords:30 }}</h3>
+                        </a>
+                        <p class="post-meta">
+                            Posted by {{ post.author }} on {{ post.created_on.date }}
+                            | Categories:
+                            {% for category in post.categories.all %}
+                                <a href="{% url 'blog_category' category.name %}">{{ category.name }}</a>
+                            {% endfor %}
+                            | Tags:
+                            {% for tag in post.tags.all %}
+                                <a href="{% url 'blog_tag' tag.slug %}">{{ tag.name }}</a>
+                                {% if not forloop.last %}, {% endif %}
+                            {% endfor %}
+                        </p>
+                    </div>
+                    <hr>
+                {% endfor %}
+            {% else %}
+                <p>No posts found for tag: {{ tag }}</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

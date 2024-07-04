@@ -1,0 +1,14 @@
+{% extends "base_polls.html" %}
+
+{% block content %}
+  <h1>Questions List</h1>
+  <ul>
+    {% for question in questions %}
+      <li>
+        <a href="{% url 'polls_api:vote_form' question.id %}">{{ question.question_text }}</a><br>
+        {{ question.pub_date }}
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}
+
